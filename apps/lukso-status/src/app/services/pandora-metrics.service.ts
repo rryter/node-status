@@ -11,7 +11,7 @@ export class PandoraMetricsService {
   constructor(private httpClient: HttpClient) {
     this.metrics$ = timer(0, 5000).pipe(
       switchMap(() => {
-        return httpClient.get('http://localhost:4200/pandora/debug/metrics');
+        return httpClient.get('/pandora/debug/metrics');
       })
     );
   }
