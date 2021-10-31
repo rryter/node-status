@@ -1,0 +1,37 @@
+<h2 class="title">Vanguard</h2>
+<section
+  *ngIf="metrics$ | async as metrics; else loadingOrError"
+  class="columns"
+>
+  <div class="column">
+    <table
+      class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+    >
+      <tr [ngClass]="calculatePeersStatus(metrics)">
+        <td class="property-name">Peers</td>
+        <td>{{ metrics['p2p_peer_count{state="Connected"}'] }}</td>
+      </tr>
+      <tr>
+        <td class="property-name">Latest Block</td>
+        <td>{{ metrics['beacon_head_slot'] }}</td>
+      </tr>
+      <!-- <tr>
+        <td class="property-name">Current Justified Epoch</td>
+        <td>{{ metrics['beacon_current_justified_epoch'] }}</td>
+      </tr>
+      <tr>
+        <td class="property-name">Finalized Epoch</td>
+        <td>{{ metrics['beacon_finalized_epoch'] }}</td>
+      </tr>
+      <tr>
+        <td class="property-name">Reorg Total</td>
+        <td>{{ metrics['beacon_reorg_total'] }}</td>x
+      </tr> -->
+    </table>
+  </div>
+</section>
+<ng-template #loadingOrError>
+  <div class="has-background-danger has-text-white p-5">
+    Can not connect to node, is it running?
+  </div>
+</ng-template>

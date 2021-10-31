@@ -21,7 +21,10 @@
               "apps/lukso-status/src/favicon.ico",
               "apps/lukso-status/src/assets"
             ],
-            "styles": ["apps/lukso-status/src/styles.scss"],
+            "styles": [
+              "apps/lukso-status/src/styles.scss",
+              "node_modules/bulma/css/bulma.css"
+            ],
             "scripts": []
           },
           "configurations": {
