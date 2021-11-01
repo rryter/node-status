@@ -9,7 +9,7 @@ import { switchMap } from 'rxjs/operators';
 export class PandoraMetricsService {
   metrics$: Observable<any>;
   constructor(private httpClient: HttpClient) {
-    this.metrics$ = timer(0, 5000).pipe(
+    this.metrics$ = timer(0, 3000).pipe(
       switchMap(() => {
         return httpClient.get('/pandora/debug/metrics');
       })

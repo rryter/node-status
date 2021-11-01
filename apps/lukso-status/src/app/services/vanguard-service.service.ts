@@ -9,7 +9,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 export class VanguardServiceService {
   metrics$: Observable<any>;
   constructor(private httpClient: HttpClient) {
-    this.metrics$ = timer(0, 5000).pipe(
+    this.metrics$ = timer(0, 3000).pipe(
       switchMap(() => {
         return httpClient
           .get('/vanguard/metrics', {
@@ -20,7 +20,6 @@ export class VanguardServiceService {
               return result.split('\n');
             }),
             map((lines) => {
-              console.log(lines.length);
               return lines.filter((line: string) => {
                 return line !== '' && !line.startsWith('#');
               });
@@ -31,9 +30,6 @@ export class VanguardServiceService {
                 acc[key] = value;
                 return acc;
               }, {});
-            }),
-            tap((lines) => {
-              console.log(lines);
             })
           );
       })

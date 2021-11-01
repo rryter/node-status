@@ -29,6 +29,36 @@
           </details>
         </td>
       </tr>
+      <tr>
+        <td>
+          <div class="control">
+            <input
+              #searchbox
+              class="input"
+              type="text"
+              placeholder="Search Metrics"
+              (keyup)="searchTerm$.next(searchbox.value)"
+            />
+          </div>
+        </td>
+        <td>
+          <table
+            *ngIf="this.filteredMetrics$ | async as filteredMetrics"
+            class="
+              table
+              is-bordered is-striped is-narrow is-hoverable is-fullwidth
+            "
+          >
+            <ng-container *ngIf="filteredMetrics.length > 0; else noMatches">
+              <tr *ngFor="let metric of filteredMetrics">
+                <td class="property-name">{{ metric[0] }}</td>
+                <td>{{ metric[1] }}</td>
+              </tr>
+            </ng-container>
+            <ng-template #noMatches>No Matches</ng-template>
+          </table>
+        </td>
+      </tr>
     </table>
 
     <!-- <h2>TX Pool</h2>
