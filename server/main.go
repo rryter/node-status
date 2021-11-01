@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"gorm.io/gorm"
 	"io/ioutil"
 	"net/http"
 	"log"

@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
-	"gorm.io/gorm"
 	"io/fs"
 	"log"
 	"net/http"
@@ -15,14 +14,7 @@ import (
 //go:embed dist/apps/lukso-status
 var static embed.FS
 
-type student struct {
-	ID   string `gorm:"primary_key" json:"id"`
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-}
-
 type App struct {
-	db *gorm.DB
 	r  *mux.Router
 }
 
