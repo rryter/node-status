@@ -41,7 +41,6 @@ func pandoraMetrics(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	app := App{
-		db: db,
 		r:  mux.NewRouter(),
 	}
 
