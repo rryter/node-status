@@ -37,7 +37,7 @@ export class PandoraStatusComponent {
 
   calculatePeersStatus(numberOfPeers: number) {
     switch (true) {
-      case numberOfPeers > 10:
+      case numberOfPeers >= 10:
         return {
           'has-background-success': true,
         };
