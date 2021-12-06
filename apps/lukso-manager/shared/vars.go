@@ -36,7 +36,7 @@ func Contains(s []string, e string) bool {
 func HandleError(err error, w http.ResponseWriter) {
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(err.Error()))
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 }

@@ -16,7 +16,7 @@ type release struct {
 	URL  string `json:"url"`
 }
 
-var defaultTag = "v0.1.0-develop"
+var defaultTag = "v0.2.0-rc.1"
 var ReleaseLocations = map[string]release{
 	"pandora": {
 		Name: "Pandora",
@@ -56,7 +56,6 @@ type startClientsRequestBody struct {
 
 func Setup(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Println("DOWNLOADING")
 	decoder := json.NewDecoder(r.Body)
 	var body startClientsRequestBody
 	err := decoder.Decode(&body)
@@ -75,14 +74,16 @@ func Setup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dbError := shared.SettingsDB.Update(func(tx *bolt.Tx) error {
+		fmt.Println("Create Bucket 'peers'")
 		_, err := tx.CreateBucket([]byte("peers"))
 		if err != nil {
-			return fmt.Errorf("create bucket: %s", err)
+			return nil
 		}
 		return nil
 	})
 
 	if dbError != nil {
+		fmt.Println(dbError.Error())
 		shared.HandleError(dbError, w)
 		return
 	}

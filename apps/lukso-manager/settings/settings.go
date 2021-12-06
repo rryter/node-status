@@ -45,6 +45,7 @@ func SaveSettingsEndpoint(w http.ResponseWriter, r *http.Request) {
 		panic(errJson)
 	}
 
+	fmt.Println("Save Settings", body.Settings, body.Network)
 	err := SaveSettings(shared.SettingsDB, &body.Settings, body.Network)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

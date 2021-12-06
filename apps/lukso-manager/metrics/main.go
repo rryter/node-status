@@ -112,13 +112,11 @@ func Health(w http.ResponseWriter, r *http.Request) {
 func getMetrics(url string, w http.ResponseWriter) (body []byte, err error) {
 	resp, err := http.Get(url)
 	if err != nil {
-		shared.HandleError(err, w)
 		return
 	}
 
 	body, err2 := ioutil.ReadAll(resp.Body)
 	if err2 != nil {
-		shared.HandleError(err, w)
 		return
 	}
 
